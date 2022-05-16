@@ -3,6 +3,7 @@ const { animals } = require('./data/animals.json');
 
 // require express package
 const express = require('express');
+const { get } = require('http');
 
 const PORT = process.env.PORT || 3001;
 
@@ -52,11 +53,29 @@ function filterByQuery(query, animalsArray) {
 app.get('/api/animals', (req, res) => {
     let results = animals;
     if (req.query) {
+        // req.query can look for multiple parameters
         results = filterByQuery(req.query, results);
     }
     // console.log(req.query)
     res.json(results);
 });
+
+function findById(id, animalsArray) {
+    const result = animalsArray.filter(animal => animal.id === id)[0];
+    return result;
+}
+
+// new GET route for animals
+app.get('/api/animals/:id', (req, res) => {
+    // req.params looks for a single parameter
+    const result = findById(req.params.id, animals);
+    if (result) {
+      res.json(result);
+    } else {
+      res.send(404);
+    }
+  });
+
 // at the end we should add listen() 
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
