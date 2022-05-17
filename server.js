@@ -65,7 +65,7 @@ function findById(id, animalsArray) {
     return result;
 }
 
-// new GET route for animals
+// new GET route for animals endpoints
 app.get('/api/animals/:id', (req, res) => {
     // req.params looks for a single parameter
     const result = findById(req.params.id, animals);
@@ -76,7 +76,21 @@ app.get('/api/animals/:id', (req, res) => {
     }
   });
 
+  //Users of the app populate the server with data by sending data from the client side of the application to the server.
+  // The route name is api/animals
+  app.post('api/animals', (req, res) => {
+      // req.body is where out incoming content will be
+      console.log(req.body);
+      // here we will see the data we're posting to the server
+      // req.body is where we can access that data on the server side and do something with it
+      res.json(req.body)
+  });
+  // we created a route here. POST request represents the action of a client requesting the server to accept data rather than vice versa (another way around)
+
+
 // at the end we should add listen() 
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
 });
+
+// !left at 11.2.5 in the end 11.2.4 didn't much the picture.
