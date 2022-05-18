@@ -11,6 +11,10 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 // thats all what takes to start express.
 
+// parse incoming string or array data
+app.use(express.urlencoded({extended: true}));
+// parse incoming JSON data
+app.use(express.json());
 
 function filterByQuery(query, animalsArray) {
 
@@ -70,22 +74,23 @@ app.get('/api/animals/:id', (req, res) => {
     // req.params looks for a single parameter
     const result = findById(req.params.id, animals);
     if (result) {
-      res.json(result);
+        res.json(result);
     } else {
-      res.send(404);
+        res.send(404);
     }
-  });
+});
 
-  //Users of the app populate the server with data by sending data from the client side of the application to the server.
-  // The route name is api/animals
-  app.post('api/animals', (req, res) => {
-      // req.body is where out incoming content will be
-      console.log(req.body);
-      // here we will see the data we're posting to the server
-      // req.body is where we can access that data on the server side and do something with it
-      res.json(req.body)
-  });
-  // we created a route here. POST request represents the action of a client requesting the server to accept data rather than vice versa (another way around)
+//Users of the app populate the server with data by sending data from the client side of the application to the server.
+// The route name is api/animals
+app.post('api/animals', (req, res) => {
+    // req.body is where out incoming content will be
+    console.log(req.body);
+    // here we will see the data we're posting to the server
+    // req.body is where we can access that data on the server side and do something with it
+    res.json(req.body)
+});
+// we created a route here. POST request represents the action of a client requesting the server to accept data rather than vice versa (another way around)
+
 
 
 // at the end we should add listen() 
