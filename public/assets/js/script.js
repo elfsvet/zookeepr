@@ -26,8 +26,8 @@ const handleAnimalFormSubmit = event => {
     personalityTraits.push(selectedTraits[i].value);
   }
   const animalObject = { name, species, diet, personalityTraits };
-// instead of url we don't use full url because the request coming from server
-//simular to how we use script and link to incorporate local files, except that now it's being done through a fetch() call!
+  // instead of url we don't use full url because the request coming from server
+  //simular to how we use script and link to incorporate local files, except that now it's being done through a fetch() call!
   fetch('/api/animals', {
     // this will allow the request to make it to the proper endpoint in our server to add new animals to the JSON file.
     method: 'POST',
@@ -70,16 +70,16 @@ const handleZookeeperFormSubmit = e => {
     },
     body: JSON.stringify(zookeeperObj)
   })
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    alert('Error: ' + res.statusText);
-  })
-  .then(postResponse => {
-    console.log(postResponse);
-    alert('Thank you for adding a zookeeper!');
-  });
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      alert('Error: ' + res.statusText);
+    })
+    .then(postResponse => {
+      console.log(postResponse);
+      alert('Thank you for adding a zookeeper!');
+    });
 };
 
 
