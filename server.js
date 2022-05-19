@@ -65,11 +65,3 @@ app.listen(PORT, () => {
 
 
 // https://stark-fjord-53097.herokuapp.com/
-
-// stopped at 11.4.7
-
-// Great. Take a moment to check that the zookeeper page automatically populates with zookeepers upon page load, as shown in the following image:
-
-// Zookeeper page displays zookeepers
-
-// This is good, but we still need to add a function to handle the form data, then pass it as an argument to getZookeepers(). Create a function called handleGetZookeepersSubmit(). This function should take the values from the form in zookeepers.html and pass them as an obje
