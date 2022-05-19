@@ -21,10 +21,17 @@ const printResults = resultArr => {
 };
 
 const getZookeepers = () => {
-  fetch('/api/zookeepers')
+  let queryUrl = '/api/zookeepers?';
+
+  Object.entries(FormData).forEach(([key,value]) => {
+    queryUrl += `${key}=${value}&`;
+  });
+
+
+  fetch(queryUrl)
     .then(response => {
       if (!response.ok) {
-        return alert('Error: ' + response.statusText);
+        return alert(`Error: ${response.statusText}`);
       }
       return response.json();
     })
